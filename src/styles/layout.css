@@ -5,42 +5,61 @@
     @apply min-h-screen flex flex-col md:flex-row;
   }
 
+  /* Container with responsive padding */
+  .container-responsive {
+    @apply w-full mx-auto px-4 
+           xs:px-5 
+           sm:px-6 
+           md:px-8 
+           lg:px-12 
+           xl:max-w-7xl
+           justify-center;
+  }
+
   /* Sidebar styles */
   .sidebar {
-    @apply fixed md:static top-0 left-0 z-30
-           w-[280px] md:w-72 h-screen
-           bg-white border-r border-gray-200 shadow-lg md:shadow-none
-           transform transition-all duration-300 ease-in-out
-           md:transform-none overflow-hidden;
+    @apply fixed left-5 z-30 h-screen px-2 py-2 md:py-6
+         bg-white border-r border-gray-200
+         transform transition-all duration-300 ease-in-out;
+    /* Widths and positioning across breakpoints */
+    /* mobile: w-[280px], md: w-[300px], lg: w-[320px] */
+    @apply w-[280px] md:w-[300px] lg:w-[240px] sm:static;
   }
 
   .sidebar-collapsed {
-    @apply -translate-x-full md:translate-x-0;
+    @apply -translate-x-full sm:translate-x-0;
   }
 
   .sidebar-overlay {
-    @apply fixed inset-0 z-20 md:hidden
+    @apply fixed inset-0 z-20
            bg-gray-900/50 backdrop-blur-sm
            transition-opacity duration-300;
+    @apply sm:hidden;
+
   }
 
   /* Main content area */
   .main-content {
-    @apply flex-1 min-h-screen flex flex-col
-           relative ml-0 md:ml-72;
+    @apply flex-1 min-h-screen flex flex-col;
+
+    /* Margin adjustments for different devices */
+    @apply ml-0;
+    /* Use responsive utilities for margins instead of @screen blocks */
+    @apply sm:ml-[280px] md:ml-[300px] lg:ml-[0px];
   }
 
   /* Topbar styles */
   .topbar {
-    @apply sticky top-0 z-20
-           flex items-center justify-between
-           px-4 py-2 md:py-3
-           bg-white border-b border-gray-200;
+    @apply sticky top-0 z-50
+           flex items-center justify-center
+           px-2 py-2 md:py-6
+           mb-4
+           bg-gray-300 border-b border-gray-200;
   }
 
   /* Content wrapper */
   .content-wrapper {
-    @apply flex-1 p-4 md:p-6 overflow-auto;
+    @apply flex-1 p-4 md:p-2 overflow-auto;
   }
 
   /* Grid layouts */
@@ -64,4 +83,28 @@
            rounded-lg shadow-sm
            scrollbar-slim;
   }
-}
+
+  /* Responsive grid layouts */
+  .grid-responsive {
+    @apply grid gap-4
+           grid-cols-1          /* Mobile: 1 column */
+           sm:grid-cols-2       /* Tablet: 2 columns */
+           lg:grid-cols-3       /* Laptop: 3 columns */
+           xl:grid-cols-4;      /* Desktop: 4 columns */
+  }
+
+  /* Responsive text sizes */
+  .text-responsive {
+    @apply text-sm          /* Mobile base */
+           sm:text-base     /* Tablet base */
+           lg:text-lg;      /* Desktop base */
+  }
+
+  /* Responsive spacing utilities */
+  .spacing-responsive {
+    @apply p-4             /* Mobile padding */
+           sm:p-6          /* Tablet padding */
+           lg:p-8          /* Laptop padding */
+           xl:p-10;        /* Desktop padding */
+  }
+  }

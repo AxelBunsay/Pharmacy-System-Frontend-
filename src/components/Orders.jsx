@@ -8,7 +8,7 @@ const sampleOrders = [
 export default function Orders() {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Orders</h2>
+      <h2 className="text-xl font-bold mb-4">Orders</h2>
       <div className="card">
         <table className="w-full">
           <thead>

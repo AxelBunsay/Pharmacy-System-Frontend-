@@ -41,18 +41,18 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
     <div className="space-y-4">
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between w-full">
-          <h2 className="text-xl font-semibold flex-1">Inventory</h2>
-          <div className="flex items-center gap-2 ml-auto">
+          <h2 className="text-xl font-bold mb-4">Inventory</h2>
+          <div className="flex gap-2 ml-auto">
             <select value={filterCat} onChange={(e) => setFilterCat(e.target.value)} className="input">
               <option value="">All categories</option>
               {categories.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
         </div>
-        {/* Action buttons stacked below title for mobile, inline for md+ */}
-        <div className="flex flex-col md:flex-row gap-2 mt-2">
-          <button onClick={() => { setEditing(null); setOpen(true) }} className="btn-primary w-full md:w-auto">Add product</button>
-          <button onClick={() => exportToCSV('inventory.csv', products)} className="px-3 py-1 border rounded w-full md:w-auto">Export CSV</button>
+        {/* Action buttons stacked below title for mobile, inline for tablet+ */}
+        <div className="flex flex-col tablet:flex-row gap-2 mt-2">
+          <button onClick={() => { setEditing(null); setOpen(true) }} className="btn-primary w-full tablet:w-auto">Add product</button>
+          <button onClick={() => exportToCSV('inventory.csv', products)} className="px-3 py-1 border rounded w-full tablet:w-auto">Export CSV</button>
         </div>
       </div>
 

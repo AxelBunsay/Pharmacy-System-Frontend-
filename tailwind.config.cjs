@@ -3,16 +3,12 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'xs': '475px',
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
-        '2xl': '1536px',
-        '3xl': '1920px',
-        'tablet': '640px',
-        'laptop': '1024px',
-        'desktop': '1280px',
+        'xs': '375px',     // Small phones
+        'sm': '640px',     // Large phones/Small tablets
+        'md': '768px',     // Tablets (iPad Mini, Galaxy Tab)
+        'lg': '1024px',    // Large tablets (iPad Pro)
+        'xl': '1280px',    // Small laptops
+        '2xl': '1536px',   // Large screens
       },
       // Use CSS variables with <alpha-value> so Tailwind's opacity shorthand
       // classes like `bg-primary/50` or `focus:ring-primary/50` work correctly.

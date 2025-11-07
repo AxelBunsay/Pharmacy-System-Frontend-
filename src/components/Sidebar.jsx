@@ -15,19 +15,20 @@ const NavItem = ({ to, children, onNavigate }) => (
 )
 
 export default function Sidebar({ onClose }) {
-  // Handle navigation - closes sidebar on mobile
+  // Handle navigation - closes sidebar on mobile and small tablets
   const handleNavigate = () => {
-    if (window.innerWidth < 768) { // 768px is Tailwind's md breakpoint
-      onClose && onClose();
+    // Close sidebar on screens smaller than md breakpoint (768px)
+    if (window.innerWidth < 768) {
+      onClose?.();
     }
   };
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="h-full flex flex-col bg-white">
       {/* Mobile header with close button */}
-      <div className="flex items-center justify-between p-4 border-b md:hidden">
+        <div className="flex items-center justify-between p-4 border-b sm:hidden">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Pharmacy Admin</h2>
+          <h2 className="text-lg font-bold text-gray-900">Pharmacy Admin</h2>
           <p className="text-sm text-gray-500">Inventory & reports</p>
         </div>
         <button 
@@ -39,11 +40,11 @@ export default function Sidebar({ onClose }) {
             <path d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
-      </div>
+  </div>
 
       {/* Desktop header */}
-      <div className="hidden md:block p-6 border-b">
-        <h2 className="text-xl font-semibold text-gray-900">Pharmacy Admin</h2>
+        <div className="hidden md:flex md:flex-col p-6 border-b">
+        <h2 className="text-xl font-bold text-gray-900">Pharmacy Admin</h2>
         <p className="text-sm text-gray-500">Inventory & reports</p>
       </div>
 
@@ -71,3 +72,4 @@ export default function Sidebar({ onClose }) {
     </div>
   )
 }
+

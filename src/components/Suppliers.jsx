@@ -8,7 +8,7 @@ const suppliers = [
 export default function Suppliers() {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Suppliers</h2>
+      <h2 className="text-xl font-bold mb-4">Suppliers</h2>
       <div className="card">
         <ul className="space-y-3">
           {suppliers.map(s => (

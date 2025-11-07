@@ -115,4 +115,26 @@
     --primary: #14B8A6;
     --primary-opacity-50: rgba(20, 184, 166, 0.5);
   }
+
+  /* Responsive buttons */
+  .btn {
+    @apply px-3 py-1.5        /* Mobile size */
+           sm:px-4 sm:py-2    /* Tablet size */
+           lg:px-6 lg:py-2.5; /* Desktop size */
+  }
+
+  /* Responsive cards */
+  .card {
+    @apply p-4 rounded-lg     /* Mobile */
+           sm:p-6             /* Tablet */
+           lg:p-8;            /* Desktop */
+  }
+
+  /* Responsive forms */
+  .input-responsive {
+    @apply w-full 
+           max-w-[300px]      /* Mobile */
+           sm:max-w-[360px]   /* Tablet */
+           lg:max-w-[400px];  /* Desktop */
+  }
 }
