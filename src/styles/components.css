@@ -110,4 +110,9 @@
   .badge-danger {
     @apply badge bg-red-100 text-red-800;
   }
+
+  :root {
+    --primary: #14B8A6;
+    --primary-opacity-50: rgba(20, 184, 166, 0.5);
+  }
 }

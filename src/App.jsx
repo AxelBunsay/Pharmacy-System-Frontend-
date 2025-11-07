@@ -11,6 +11,7 @@ import sampleProducts from './data/products'
 
 export default function App() {
   const [products, setProducts] = useState([])
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -45,12 +46,16 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <aside className="sidebar">
-        <Sidebar />
+      {/* overlay for mobile when sidebar is open */}
+      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+
+      <aside className={`sidebar ${sidebarOpen ? '' : 'sidebar-collapsed'}`} aria-hidden={!sidebarOpen}>
+        <Sidebar onClose={() => setSidebarOpen(false)} />
       </aside>
-      <div className="flex-1 min-h-screen">
-        <Topbar />
-        <main className="content">
+
+      <div className="main-content">
+        <Topbar onToggle={() => setSidebarOpen((s) => !s)} />
+        <main className="content px-4 md:px-8">
           <Routes>
             <Route path="/" element={<Dashboard products={products} />} />
             <Route

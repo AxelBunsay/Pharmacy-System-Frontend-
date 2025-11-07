@@ -14,14 +14,19 @@ module.exports = {
         'laptop': '1024px',
         'desktop': '1280px',
       },
+      // Use CSS variables with <alpha-value> so Tailwind's opacity shorthand
+      // classes like `bg-primary/50` or `focus:ring-primary/50` work correctly.
       colors: {
-        primary: 'var(--primary)',
-        'primary-dark': 'var(--primary-dark)',
-        'primary-light': 'var(--primary-light)',
-        secondary: 'var(--secondary)',
-        danger: 'var(--danger)',
-        warning: 'var(--warning)',
-        success: 'var(--success)',
+        primary: {
+          DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
+          dark: 'rgb(var(--primary-dark) / <alpha-value>)',
+          light: 'rgb(var(--primary-light) / <alpha-value>)',
+          50: 'rgb(var(--primary) / 0.5)',
+        },
+        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        danger: 'rgb(var(--danger) / <alpha-value>)',
+        warning: 'rgb(var(--warning) / <alpha-value>)',
+        success: 'rgb(var(--success) / <alpha-value>)',
       },
       container: {
         center: true,
