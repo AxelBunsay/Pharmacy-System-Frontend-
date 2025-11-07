@@ -17,21 +17,36 @@ export default function Topbar({ onToggle }) {
 
   return (
     <header className="topbar">
-      {/* Container aligns Topbar content with main content */}
-      <div className="container-responsive w-full flex flex-col gap-2">
-        <div className="flex flex-row items-center w-full relative">
-          <button
-            onClick={() => onToggle && onToggle()}
-            className="md:hidden px-2 py-1 border rounded-md mr-2"
-            aria-label="Toggle menu">
-            ☰
-          </button>
+      <div className="container-responsive w-full">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={onToggle}
+              className="sm:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none"
+              aria-label="Toggle sidebar"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            
+            <form onSubmit={onSearch} className="flex items-center gap-2 max-w-md w-full">
+              <input 
+                type="text"
+                value={q} 
+                onChange={(e) => setQ(e.target.value)} 
+                placeholder="Search products" 
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <button 
+                type="submit" 
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
-
-        <form onSubmit={onSearch} className="flex items-center gap-2 w-full">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search products" className="input w-full" />
-          <button className="btn-primary" type="submit">Search</button>
-        </form>
       </div>
     </header>
   )

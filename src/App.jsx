@@ -45,27 +45,40 @@ export default function App() {
   }
 
   return (
-    <div className="app-container">
-      {/* overlay for mobile when sidebar is open */}
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+    <div className="min-h-screen bg-gray-50">
+      {/* Overlay for mobile when sidebar is open */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity sm:hidden" 
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-      <aside className={`sidebar ${sidebarOpen ? '' : 'sidebar-collapsed'}`} aria-hidden={!sidebarOpen}>
+      {/* Sidebar */}
+      <div 
+        className={`transform ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } sm:translate-x-0 transition-transform duration-300 ease-in-out`}
+      >
         <Sidebar onClose={() => setSidebarOpen(false)} />
-      </aside>
+      </div>
 
+      {/* Main Content */}
       <div className="main-content">
         <Topbar onToggle={() => setSidebarOpen((s) => !s)} />
-        <main className="content px-4 md:px-8">
-          <Routes>
-            <Route path="/" element={<Dashboard products={products} />} />
-            <Route
-              path="/inventory"
-              element={<Inventory products={products} addProduct={addProduct} updateProduct={updateProduct} deleteProduct={deleteProduct} />}
-            />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/suppliers" element={<Suppliers />} />
-            <Route path="/reports" element={<Reports products={products} />} />
-          </Routes>
+        <main className="content-wrapper">
+          <div className="container-responsive">
+            <Routes>
+              <Route path="/" element={<Dashboard products={products} />} />
+              <Route
+                path="/inventory"
+                element={<Inventory products={products} addProduct={addProduct} updateProduct={updateProduct} deleteProduct={deleteProduct} />}
+              />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/reports" element={<Reports products={products} />} />
+            </Routes>
+          </div>
         </main>
       </div>
     </div>
