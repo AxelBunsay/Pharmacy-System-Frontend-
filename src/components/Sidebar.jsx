@@ -24,7 +24,7 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-      <aside className="fixed left-0 top-0 h-screen w-[280px] flex flex-col bg-white border-r border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out sm:translate-x-0">
+    <aside className="fixed left-0 top-0 h-screen w-[280px] flex flex-col bg-white border-r border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out sm:translate-x-0 z-50">
         <div className="flex flex-col h-full">
       {/* Mobile header with close button */}
           <div className="flex items-center justify-between p-4 border-b sm:hidden">

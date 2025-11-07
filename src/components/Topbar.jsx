@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export default function Topbar({ onToggle }) {
+export default function Topbar({ onToggle, sidebarOpen = false }) {
   const [q, setQ] = useState('')
   const navigate = useNavigate()
   const location = useLocation()

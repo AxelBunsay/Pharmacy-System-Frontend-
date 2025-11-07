@@ -46,10 +46,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Overlay for mobile when sidebar is open */}
+      {/* Overlay for mobile when sidebar is open.
+          Place overlay to the right of the sidebar so it does not cover or dim the sidebar itself.
+      */}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity sm:hidden" 
+        <div
+          className="fixed bg-black bg-opacity-50 z-40 transition-opacity sm:hidden"
+          style={{ top: 0, bottom: 0, right: 0, left: '280px' }}
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -59,13 +62,14 @@ export default function App() {
         className={`transform ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } sm:translate-x-0 transition-transform duration-300 ease-in-out`}
+        style={{ zIndex: 9999 }}
       >
         <Sidebar onClose={() => setSidebarOpen(false)} />
       </div>
 
       {/* Main Content */}
       <div className="main-content">
-        <Topbar onToggle={() => setSidebarOpen((s) => !s)} />
+        <Topbar onToggle={() => setSidebarOpen((s) => !s)} sidebarOpen={sidebarOpen} />
         <main className="content-wrapper">
           <div className="container-responsive">
             <Routes>
