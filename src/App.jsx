@@ -49,26 +49,26 @@ export default function App() {
       {/* Overlay for mobile when sidebar is open.
           Place overlay to the right of the sidebar so it does not cover or dim the sidebar itself.
       */}
+      {/* Overlay for mobile when sidebar is open */}
       {sidebarOpen && (
         <div
-          className="fixed bg-black bg-opacity-50 z-40 transition-opacity sm:hidden"
-          style={{ top: 0, bottom: 0, right: 0, left: '280px' }}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity sm:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <div 
-        className={`transform ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } sm:translate-x-0 transition-transform duration-300 ease-in-out`}
-        style={{ zIndex: 9999 }}
+      {/* Sidebar: slide-in on mobile, static on desktop */}
+      <div
+        className={`fixed top-0 left-0 h-full w-[280px] z-50 bg-white border-r border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          sm:static sm:translate-x-0 sm:h-auto sm:top-auto sm:left-auto sm:z-auto sm:bg-transparent sm:border-none sm:shadow-none`}
       >
         <Sidebar onClose={() => setSidebarOpen(false)} />
       </div>
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className="pt-8 min-h-screen sm:ml-[280px]">
         <Topbar onToggle={() => setSidebarOpen((s) => !s)} sidebarOpen={sidebarOpen} />
         <main className="content-wrapper">
           <div className="container-responsive">

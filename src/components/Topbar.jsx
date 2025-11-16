@@ -8,7 +8,6 @@ export default function Topbar({ onToggle, sidebarOpen = false }) {
 
   const onSearch = (e) => {
     e.preventDefault()
-    // naive: encode query in URL search param for Inventory route
     if (location.pathname !== '/inventory') navigate('/inventory')
     const url = new URL(window.location)
     url.searchParams.set('q', q)
@@ -16,37 +15,20 @@ export default function Topbar({ onToggle, sidebarOpen = false }) {
   }
 
   return (
-    <header className="topbar">
-      <div className="container-responsive w-full">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={onToggle}
-              className="sm:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none"
-              aria-label="Toggle sidebar"
-            >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            
-            <form onSubmit={onSearch} className="flex items-center gap-2 max-w-md w-full">
-              <input 
-                type="text"
-                value={q} 
-                onChange={(e) => setQ(e.target.value)} 
-                placeholder="Search products" 
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <button 
-                type="submit" 
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
+    <header className="border-b-4 border-red-600 bg-red-400 px-6 py-3 flex items-center rounded-b-lg rounded-t-lg w-[82.5%] ml-[47px] mt-[8px]">
+    <div className="w-full flex items-center">
+        {/* Hamburger for mobile */}
+        <button
+          onClick={onToggle}
+          className="sm:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none mr-2"
+          aria-label="Toggle sidebar"
+        >
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        {/* Title */}
+        <div className="text-lg font-bold text-gray-900 sm:ml-auto">Pharmacy Admin</div>
       </div>
     </header>
   )

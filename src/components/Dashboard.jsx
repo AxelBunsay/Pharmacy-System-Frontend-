@@ -17,13 +17,13 @@ export default function Dashboard({ products = [] }) {
   const totalValue = products.reduce((s, p) => s + p.stock * (p.price || 0), 0)
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 flex flex-col gap-2 mt-8">
       <h2 className="text-xl font-bold mb-4">Dashboard</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard title="Total products" value={totalProducts} />
         <StatCard title="Low stock" value={lowStock} hint="<= 10 units" />
         <StatCard title="Expired" value={expired} />
-        <StatCard title="Inventory value" value={`$${totalValue.toFixed(2)}`} />
+        <StatCard title="Inventory value" value={`₱${totalValue.toFixed(2)}`} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

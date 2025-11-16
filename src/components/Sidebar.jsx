@@ -24,16 +24,12 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-    <aside className="
-      w-[280px] flex flex-col bg-white border-r border-gray-200 shadow-lg
-      fixed top-16 left-0 h-[calc(100vh-4rem)] z-50
-      sm:static sm:top-auto sm:left-auto sm:h-auto
-    ">
+   <aside className="w-[120px] flex flex-col border-b-4 border-red-600 bg-red-400 px-6 py-3 items-center justify-between rounded-b-lg rounded-t-lg h-full sm:fixed sm:top-10 sm:left-24 sm:h-[calc(100vh-4rem)] sm:z-50">
       <div className="flex flex-col h-full">
         {/* Mobile header with close button */}
         <div className="flex items-center justify-between p-4 border-b sm:hidden">
           <div>
-            <h2 className="text-lg font-bold text-gray-900">Pharmacy Admin</h2>
+            <h2 className="text-lg font-extrabold text-gray-900">Pharmacy Admin</h2>
             <p className="text-sm text-gray-500">Inventory & reports</p>
           </div>
           <button 
@@ -47,14 +43,8 @@ export default function Sidebar({ onClose }) {
           </button>
         </div>
 
-        {/* Desktop header */}
-        <div className="hidden sm:flex sm:flex-col p-6 border-b">
-          <h2 className="text-xl font-bold text-gray-900">Pharmacy Admin</h2>
-          <p className="text-sm text-gray-500">Inventory & reports</p>
-        </div>
-
         {/* Navigation with scroll */}
-        <nav className="flex-1 overflow-y-auto py-4">
+        <nav className="flex-1 overflow-y-auto py-4 text-white">
           <div className="px-3 space-y-1">
             <NavItem to="/" onNavigate={handleNavigate}>Dashboard</NavItem>
             <NavItem to="/inventory" onNavigate={handleNavigate}>Inventory</NavItem>
@@ -66,14 +56,10 @@ export default function Sidebar({ onClose }) {
       </div>
 
       {/* User info footer - fixed at bottom */}
-      <div className="shrink-0 border-t bg-white p-4">
+      <div className="shrink-0 bg-red-400 p-4">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-            <span className="text-sm font-medium text-gray-600">A</span>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm font-medium text-gray-900">Admin User</p>
-            <p className="text-xs text-gray-500">admin@pharmacy.local</p>
+            <span className="text-sm font-medium text-gray-600 items-center">A</span>
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
   })
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mt-8">
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between w-full">
           <h2 className="text-xl font-bold mb-4">Inventory</h2>
