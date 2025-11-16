@@ -24,55 +24,59 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[280px] flex flex-col bg-white border-r border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out sm:translate-x-0 z-50">
-        <div className="flex flex-col h-full">
-      {/* Mobile header with close button */}
-          <div className="flex items-center justify-between p-4 border-b sm:hidden">
-            <div>
-          <h2 className="text-lg font-bold text-gray-900">Pharmacy Admin</h2>
+    <aside className="
+      w-[280px] flex flex-col bg-white border-r border-gray-200 shadow-lg
+      fixed top-16 left-0 h-[calc(100vh-4rem)] z-50
+      sm:static sm:top-auto sm:left-auto sm:h-auto
+    ">
+      <div className="flex flex-col h-full">
+        {/* Mobile header with close button */}
+        <div className="flex items-center justify-between p-4 border-b sm:hidden">
+          <div>
+            <h2 className="text-lg font-bold text-gray-900">Pharmacy Admin</h2>
+            <p className="text-sm text-gray-500">Inventory & reports</p>
+          </div>
+          <button 
+            onClick={onClose}
+            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-label="Close sidebar"
+          >
+            <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        {/* Desktop header */}
+        <div className="hidden sm:flex sm:flex-col p-6 border-b">
+          <h2 className="text-xl font-bold text-gray-900">Pharmacy Admin</h2>
           <p className="text-sm text-gray-500">Inventory & reports</p>
         </div>
-        <button 
-          onClick={onClose}
-          className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-          aria-label="Close sidebar"
-        >
-          <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-          </div>
 
-      {/* Desktop header */}
-          <div className="hidden sm:flex sm:flex-col p-6 border-b">
-        <h2 className="text-xl font-bold text-gray-900">Pharmacy Admin</h2>
-        <p className="text-sm text-gray-500">Inventory & reports</p>
+        {/* Navigation with scroll */}
+        <nav className="flex-1 overflow-y-auto py-4">
+          <div className="px-3 space-y-1">
+            <NavItem to="/" onNavigate={handleNavigate}>Dashboard</NavItem>
+            <NavItem to="/inventory" onNavigate={handleNavigate}>Inventory</NavItem>
+            <NavItem to="/orders" onNavigate={handleNavigate}>Orders</NavItem>
+            <NavItem to="/suppliers" onNavigate={handleNavigate}>Suppliers</NavItem>
+            <NavItem to="/reports" onNavigate={handleNavigate}>Reports</NavItem>
+          </div>
+        </nav>
       </div>
 
-          {/* Navigation with scroll */}
-          <nav className="flex-1 overflow-y-auto py-4">
-            <div className="px-3 space-y-1">
-          <NavItem to="/" onNavigate={handleNavigate}>Dashboard</NavItem>
-          <NavItem to="/inventory" onNavigate={handleNavigate}>Inventory</NavItem>
-          <NavItem to="/orders" onNavigate={handleNavigate}>Orders</NavItem>
-          <NavItem to="/suppliers" onNavigate={handleNavigate}>Suppliers</NavItem>
-          <NavItem to="/reports" onNavigate={handleNavigate}>Reports</NavItem>
-            </div>
-        </nav>
-        </div>
-
-        {/* User info footer - fixed at bottom */}
-        <div className="shrink-0 border-t bg-white p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-              <span className="text-sm font-medium text-gray-600">A</span>
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-gray-900">Admin User</p>
-              <p className="text-xs text-gray-500">admin@pharmacy.local</p>
-            </div>
+      {/* User info footer - fixed at bottom */}
+      <div className="shrink-0 border-t bg-white p-4">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+            <span className="text-sm font-medium text-gray-600">A</span>
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-medium text-gray-900">Admin User</p>
+            <p className="text-xs text-gray-500">admin@pharmacy.local</p>
           </div>
         </div>
+      </div>
     </aside>
   )
 }
