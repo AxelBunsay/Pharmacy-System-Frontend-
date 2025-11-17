@@ -15,7 +15,7 @@ export default function Topbar({ onToggle, sidebarOpen = false }) {
   }
 
   return (
-    <header className="border-b-4 border-red-600 bg-red-400 px-6 py-3 flex items-center rounded-b-lg rounded-t-lg w-[82.5%] ml-[47px] mt-[8px]">
+    <header className=" bg-red-600 fixed top-0 left-0 w-full z-50 bg-red-400 px-6 py-3 flex items-center rounded-b-lg">
     <div className="w-full flex items-center">
         {/* Hamburger for mobile */}
         <button

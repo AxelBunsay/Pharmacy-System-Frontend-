@@ -24,7 +24,7 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-   <aside className="w-[120px] flex flex-col border-b-4 border-red-600 bg-red-400 px-6 py-3 items-center justify-between rounded-b-lg rounded-t-lg h-full sm:fixed sm:top-10 sm:left-24 sm:h-[calc(100vh-4rem)] sm:z-50">
+  <aside className="fixed top-0 left-0 w-[240px] h-screen bg-red-600 px-6 py-6 flex flex-col gap-4 overflow-y-auto pt-[80px]">
       <div className="flex flex-col h-full">
         {/* Mobile header with close button */}
         <div className="flex items-center justify-between p-4 border-b sm:hidden">
@@ -56,10 +56,10 @@ export default function Sidebar({ onClose }) {
       </div>
 
       {/* User info footer - fixed at bottom */}
-      <div className="shrink-0 bg-red-400 p-4">
+      <div className="shrink-0 bg-red-600 p-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-            <span className="text-sm font-medium text-gray-600 items-center">A</span>
+          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+            <span className="text-sm font-medium text-white items-center">A</span>
           </div>
         </div>
       </div>

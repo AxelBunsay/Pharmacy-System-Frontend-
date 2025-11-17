@@ -9,9 +9,9 @@
   }
 
   .btn-primary {
-    @apply btn bg-teal-500 text-white
-           hover:bg-teal-600
-           focus:ring-teal-500/50;
+    @apply btn bg-red-500 text-white
+           hover:bg-red-600
+           focus:ring-red-500/50;
   }
 
   .btn-secondary {
