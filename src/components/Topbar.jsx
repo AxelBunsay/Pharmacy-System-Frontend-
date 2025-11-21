@@ -17,6 +17,7 @@ export default function Topbar({ onToggle, sidebarOpen = false }) {
   return (
     <header className=" bg-red-600 fixed top-0 left-0 w-full z-50 bg-red-400 px-6 py-3 flex items-center rounded-b-lg">
     <div className="w-full flex items-center">
+      
         {/* Hamburger for mobile */}
         <button
           onClick={onToggle}
@@ -28,7 +29,7 @@ export default function Topbar({ onToggle, sidebarOpen = false }) {
           </svg>
         </button>
         {/* Title */}
-        <div className="text-lg font-bold text-gray-900 sm:ml-auto">Pharmacy Admin</div>
+        <div className="text-lg text-white font-bold sm:ml-auto">Pharmacy Admin</div>
       </div>
     </header>
   )

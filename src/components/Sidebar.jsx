@@ -7,7 +7,7 @@ const NavItem = ({ to, children, onNavigate }) => (
     onClick={onNavigate}
     className={({ isActive }) =>
       'block px-4 py-3 rounded-lg transition-colors duration-150 ' + 
-      (isActive ? 'bg-primary/10 text-primary font-medium' : 'text-gray-600 hover:bg-gray-100')
+      (isActive ? 'bg-white/20 text-white font-medium' : 'text-white hover:bg-white/10')
     }
   >
     {children}
@@ -58,7 +58,7 @@ export default function Sidebar({ onClose }) {
       {/* User info footer - fixed at bottom */}
       <div className="shrink-0 bg-red-600 p-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
             <span className="text-sm font-medium text-white items-center">A</span>
           </div>
         </div>
