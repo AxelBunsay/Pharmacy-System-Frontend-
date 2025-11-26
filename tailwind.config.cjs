@@ -3,25 +3,25 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'xs': '475px',
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
+        xs: '475px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
         '2xl': '1536px',
         '3xl': '1920px',
-        'tablet': '640px',
-        'laptop': '1024px',
-        'desktop': '1280px',
+        tablet: '640px',
+        laptop: '1024px',
+        desktop: '1280px',
       },
       colors: {
-        primary: 'var(--primary)',
-        'primary-dark': 'var(--primary-dark)',
-        'primary-light': 'var(--primary-light)',
-        secondary: 'var(--secondary)',
-        danger: 'var(--danger)',
-        warning: 'var(--warning)',
-        success: 'var(--success)',
+        primary: 'rgb(var(--primary) / <alpha-value>)',
+        'primary-dark': 'rgb(var(--primary-dark) / <alpha-value>)',
+        'primary-light': 'rgb(var(--primary-light) / <alpha-value>)',
+        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        danger: 'rgb(var(--danger) / <alpha-value>)',
+        warning: 'rgb(var(--warning) / <alpha-value>)',
+        success: 'rgb(var(--success) / <alpha-value>)',
       },
       container: {
         center: true,
@@ -40,4 +40,4 @@ module.exports = {
       strategy: 'class',
     }),
   ],
-}
+};
