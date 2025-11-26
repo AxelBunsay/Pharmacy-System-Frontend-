@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export default function Topbar() {
+export default function Topbar({ onToggle, sidebarOpen = false }) {
   const [q, setQ] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
 
   const onSearch = (e) => {
     e.preventDefault()
-    // naive: encode query in URL search param for Inventory route
     if (location.pathname !== '/inventory') navigate('/inventory')
     const url = new URL(window.location)
     url.searchParams.set('q', q)
@@ -16,15 +15,22 @@ export default function Topbar() {
   }
 
   return (
-    <header className="flex items-center justify-between p-4 border-b bg-white">
-      <div className="flex items-center gap-4">
-        <button className="md:hidden px-2 py-1 border rounded-md">☰</button>
-        <h1 className="text-lg font-semibold">Admin Console</h1>
+    <header className=" bg-red-600 fixed top-0 left-0 w-full z-50 bg-red-400 px-6 py-3 flex items-center rounded-b-lg">
+    <div className="w-full flex items-center">
+      
+        {/* Hamburger for mobile */}
+        <button
+          onClick={onToggle}
+          className="sm:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none mr-2"
+          aria-label="Toggle sidebar"
+        >
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        {/* Title */}
+        <div className="text-lg text-white font-bold sm:ml-auto">Pharmacy Admin</div>
       </div>
-      <form onSubmit={onSearch} className="flex items-center gap-2">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search products, sku..." className="input w-64" />
-        <button className="btn-primary" type="submit">Search</button>
-      </form>
     </header>
   )
 }

@@ -38,16 +38,21 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
   })
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Inventory</h2>
-        <div className="flex items-center gap-2">
-          <select value={filterCat} onChange={(e) => setFilterCat(e.target.value)} className="input">
-            <option value="">All categories</option>
-            {categories.map((c) => <option key={c} value={c}>{c}</option>)}
-          </select>
-          <button onClick={() => { setEditing(null); setOpen(true) }} className="btn-primary">Add product</button>
-          <button onClick={() => exportToCSV('inventory.csv', products)} className="px-3 py-1 border rounded">Export CSV</button>
+    <div className="space-y-4 mt-8">
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between w-full">
+          <h2 className="text-xl font-bold mb-4">Inventory</h2>
+          <div className="flex gap-2 ml-auto">
+            <select value={filterCat} onChange={(e) => setFilterCat(e.target.value)} className="input">
+              <option value="">All categories</option>
+              {categories.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+        </div>
+        {/* Action buttons stacked below title for mobile, inline for tablet+ */}
+        <div className="flex flex-col tablet:flex-row gap-2 mt-2">
+          <button onClick={() => { setEditing(null); setOpen(true) }} className="btn-primary w-full tablet:w-auto">Add product</button>
+          <button onClick={() => exportToCSV('inventory.csv', products)} className="px-3 py-1 border rounded w-full tablet:w-auto">Export CSV</button>
         </div>
       </div>
 

@@ -4,13 +4,14 @@
 @tailwind utilities;
 
 :root {
-  --primary: #0ea5a4;
-  --primary-dark: #0a8281;
-  --primary-light: #14b8b7;
-  --secondary: #64748b;
-  --danger: #ef4444;
-  --warning: #f59e0b;
-  --success: #10b981;
+  /* Use space-separated RGB values so `rgb(var(--primary) / <alpha-value>)` works */
+  --primary: 14 165 164; /* #0ea5a4 */
+  --primary-dark: 10 130 129; /* #0a8281 */
+  --primary-light: 20 184 183; /* #14b8b7 */
+  --secondary: 100 116 139; /* #64748b */
+  --danger: 239 68 68; /* #ef4444 */
+  --warning: 245 158 11; /* #f59e0b */
+  --success: 16 185 129; /* #10b981 */
 }
 
 body {

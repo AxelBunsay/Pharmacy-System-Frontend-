@@ -1,65 +1,204 @@
-/* Layout components styling */
-@layer components {
-  /* Container styles */
+/* Layout styles */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
   .app-container {
-    @apply min-h-screen flex flex-col md:flex-row;
+    flex-direction: row;
   }
+}
 
-  /* Sidebar styles */
-  .sidebar {
-    @apply fixed md:static top-0 left-0 z-30
-           w-64 md:w-72 h-screen md:h-auto
-           bg-white border-r border-gray-200
-           transform transition-transform duration-200 ease-in-out
-           md:transform-none;
+/* Container with responsive padding */
+.container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 375px) {
+  .container-responsive {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
+}
 
-  .sidebar-collapsed {
-    @apply -translate-x-full md:translate-x-0;
+@media (min-width: 640px) {
+  .container-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
+}
 
-  .sidebar-overlay {
-    @apply fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden;
+@media (min-width: 768px) {
+  .container-responsive {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
+}
 
-  /* Main content area */
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 80rem;
+  }
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  margin-bottom: 1000px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+@media (min-width: 640px) {
   .main-content {
-    @apply flex-1 min-h-screen flex flex-col
-           relative ml-0 md:ml-72;
+    margin-left: 280px;
   }
+}
 
-  /* Topbar styles */
-  .topbar {
-    @apply sticky top-0 z-20
-           flex items-center justify-between
-           px-4 py-2 md:py-3
-           bg-white border-b border-gray-200;
-  }
+/* Topbar styles */
+.topbar {
+  top: 10rem;
+  display: flex;
+  z-index: 100;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 100px;
+  background-color: rgb(180, 179, 179);
+  border-bottom: 1px solid rgb(229 231 235);
+}
 
-  /* Content wrapper */
+/* Content wrapper */
+.content-wrapper {
+
+}
+
+@media (min-width: 768px) {
   .content-wrapper {
-    @apply flex-1 p-4 md:p-6 overflow-auto;
   }
+}
 
-  /* Grid layouts */
+/* Grid layouts */
+.dashboard-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
   .dashboard-grid {
-    @apply grid gap-4
-           grid-cols-1 
-           sm:grid-cols-2 
-           lg:grid-cols-4;
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.content-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
   .content-grid {
-    @apply grid gap-6
-           grid-cols-1
-           md:grid-cols-2
-           xl:grid-cols-3;
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  /* Table container */
-  .table-container {
-    @apply w-full overflow-x-auto 
-           rounded-lg shadow-sm
-           scrollbar-slim;
+@media (min-width: 1280px) {
+  .content-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Table container */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+/* Responsive grid layouts */
+.grid-responsive {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive text sizes */
+.text-responsive {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .text-responsive {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive {
+    font-size: 1.125rem;
+  }
+}
+
+/* Responsive spacing utilities */
+.spacing-responsive {
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .spacing-responsive {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .spacing-responsive {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .spacing-responsive {
+    padding: 2.5rem;
   }
 }

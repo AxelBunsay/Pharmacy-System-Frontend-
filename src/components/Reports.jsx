@@ -4,7 +4,7 @@ import { exportToCSV } from '../utils/csv'
 export default function Reports({ products = [] }) {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Reports</h2>
+      <h2 className="text-xl font-bold mb-4 mt-8">Reports</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="card">
           <h3 className="font-semibold">Inventory export</h3>

@@ -3,26 +3,28 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: '475px',
-        sm: '640px',
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-        '2xl': '1536px',
-        '3xl': '1920px',
-        tablet: '640px',
-        laptop: '1024px',
-        desktop: '1280px',
+        xs: '375px',     // small phones
+        sm: '640px',     // large phones
+        md: '768px',     // tablets
+        lg: '1024px',    // large tablets / small laptops
+        xl: '1280px',    // laptops
+        '2xl': '1536px', // desktops
       },
+
       colors: {
-        primary: 'rgb(var(--primary) / <alpha-value>)',
-        'primary-dark': 'rgb(var(--primary-dark) / <alpha-value>)',
-        'primary-light': 'rgb(var(--primary-light) / <alpha-value>)',
+        // Supports opacity classes like bg-primary/50, ring-primary/20, etc.
+        primary: {
+          DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
+          dark: 'rgb(var(--primary-dark) / <alpha-value>)',
+          light: 'rgb(var(--primary-light) / <alpha-value>)',
+        },
+
         secondary: 'rgb(var(--secondary) / <alpha-value>)',
         danger: 'rgb(var(--danger) / <alpha-value>)',
         warning: 'rgb(var(--warning) / <alpha-value>)',
         success: 'rgb(var(--success) / <alpha-value>)',
       },
+
       container: {
         center: true,
         padding: {
@@ -35,6 +37,7 @@ module.exports = {
       },
     },
   },
+
   plugins: [
     require('@tailwindcss/forms')({
       strategy: 'class',
