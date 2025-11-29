@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 const NavItem = ({ to, children, onNavigate }) => (
   <NavLink
@@ -46,9 +47,9 @@ export default function Sidebar({ onClose }) {
         {/* Navigation with scroll */}
         <nav className="flex-1 overflow-y-auto py-4 text-white">
           <div className="px-3 space-y-1">
-            <NavItem to="/" onNavigate={handleNavigate}>Dashboard</NavItem>
+            <NavItem to="/dashboard" onNavigate={handleNavigate}>Dashboard</NavItem>
             <NavItem to="/inventory" onNavigate={handleNavigate}>Inventory</NavItem>
-            <NavItem to="/orders" onNavigate={handleNavigate}>Orders</NavItem>
+            <NavItem to="/POS" onNavigate={handleNavigate}>POS</NavItem>
             <NavItem to="/suppliers" onNavigate={handleNavigate}>Suppliers</NavItem>
             <NavItem to="/reports" onNavigate={handleNavigate}>Reports</NavItem>
           </div>
@@ -61,7 +62,11 @@ export default function Sidebar({ onClose }) {
           <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
             <span className="text-sm font-medium text-white items-center">A</span>
           </div>
-        </div>
+           <button
+            onClick={() => window.location.href = "/Login"}
+            className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition font-medium"
+          >Sign out</button>
+         </div>
       </div>
     </aside>
   )
