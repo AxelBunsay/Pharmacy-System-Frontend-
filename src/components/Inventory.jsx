@@ -11,10 +11,8 @@ function useQuery() {
 export default function Inventory({ products = [], addProduct, updateProduct, deleteProduct }) {
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState(null)
-  const [filterCat, setFilterCat] = useState('')
-  const q = useQuery().get('q') || ''
 
-  const categories = useMemo(() => [...new Set(products.map((p) => p.category).filter(Boolean))], [products])
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     // close modal on escape (simple)
@@ -29,30 +27,39 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
   }
 
   const filtered = products.filter((p) => {
-    if (filterCat && p.category !== filterCat) return false
-    if (q) {
-      const qq = q.toLowerCase()
-      return p.name.toLowerCase().includes(qq) || p.sku.toLowerCase().includes(qq)
+    if (search) {
+      const qq = search.toLowerCase();
+      return p.name.toLowerCase().includes(qq) || p.sku.toLowerCase().includes(qq);
     }
-    return true
-  })
+    return true;
+  });
 
   return (
     <div className="space-y-4 mt-8">
       <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between w-full">
-          <h2 className="text-xl font-bold mb-4">Inventory</h2>
-          <div className="flex gap-2 ml-auto">
-            <select value={filterCat} onChange={(e) => setFilterCat(e.target.value)} className="input">
-              <option value="">All categories</option>
-              {categories.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
-          </div>
-        </div>
-        {/* Action buttons stacked below title for mobile, inline for tablet+ */}
-        <div className="flex flex-col tablet:flex-row gap-2 mt-2">
-          <button onClick={() => { setEditing(null); setOpen(true) }} className="btn-primary w-full tablet:w-auto">Add product</button>
-          <button onClick={() => exportToCSV('inventory.csv', products)} className="px-3 py-1 border rounded w-full tablet:w-auto">Export CSV</button>
+        <h2 className="text-xl font-bold mb-2">Inventory</h2>
+        {/* Search bar below title */}
+        <input
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search by name or SKU..."
+          className="input w-full mb-2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400"
+        />
+        {/* Action buttons below search bar, left-aligned, minimal padding */}
+        <div className="flex flex-row gap-2 mt-1">
+          <button
+            onClick={() => { setEditing(null); setOpen(true) }}
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1 rounded transition"
+          >
+            Add product
+          </button>
+          <button
+            onClick={() => exportToCSV('inventory.csv', products)}
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1 rounded transition"
+          >
+            Export CSV
+          </button>
         </div>
       </div>
 

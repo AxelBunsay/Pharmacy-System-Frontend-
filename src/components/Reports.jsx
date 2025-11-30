@@ -10,7 +10,7 @@ export default function Reports({ products = [] }) {
           <h3 className="font-semibold">Inventory export</h3>
           <p className="text-sm text-gray-500">Download current inventory snapshot as CSV.</p>
           <div className="mt-3">
-            <button onClick={() => exportToCSV('inventory-report.csv', products)} className="btn-primary">Download CSV</button>
+            <button onClick={() => exportToCSV('inventory-report.csv', products)} className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded transition">Download CSV</button>
           </div>
         </div>
         <div className="card">
