@@ -35,7 +35,7 @@ export default function Sidebar({ onClose }) {
           </div>
           <button 
             onClick={onClose}
-            className="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
             aria-label="Close sidebar"
           >
             <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
