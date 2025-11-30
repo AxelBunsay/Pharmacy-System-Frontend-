@@ -37,7 +37,7 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
   return (
     <div className="space-y-4 mt-8">
       <div className="flex flex-col gap-2">
-        <h2 className="text-xl font-bold mb-2">Inventory</h2>
+        <h2 className="text-xl font-bold font-poppins mb-2">Inventory</h2>
         {/* Search bar below title */}
         <input
           type="text"
@@ -50,13 +50,13 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
         <div className="flex flex-row gap-2 mt-1">
           <button
             onClick={() => { setEditing(null); setOpen(true) }}
-            className="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1 rounded transition"
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-1 rounded transition"
           >
             Add product
           </button>
           <button
             onClick={() => exportToCSV('inventory.csv', products)}
-            className="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1 rounded transition"
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-1 rounded transition"
           >
             Export CSV
           </button>

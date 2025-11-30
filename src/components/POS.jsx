@@ -61,7 +61,7 @@ export default function POS({ products = [], setProducts }) {
 
   return (
     <div className="mt-8 space-y-6">
-      <h2 className="text-xl font-bold mb-2">Point of Sale (POS)</h2>
+      <h2 className="text-xl font-bold font-poppins mb-2">Point of Sale (POS)</h2>
       <input
         type="text"
         value={search}
