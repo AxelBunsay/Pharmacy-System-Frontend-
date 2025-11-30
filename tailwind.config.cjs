@@ -24,7 +24,7 @@ module.exports = {
         warning: 'rgb(var(--warning) / <alpha-value>)',
         success: 'rgb(var(--success) / <alpha-value>)',
       },
-
+          
       container: {
         center: true,
         padding: {

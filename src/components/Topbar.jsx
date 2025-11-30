@@ -28,8 +28,7 @@ export default function Topbar({ onToggle, sidebarOpen = false }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        {/* Title */}
-        <div className="text-lg text-white font-bold sm:ml-auto">Pharmacy Admin</div>
+        <div className="text-lg text-white font-bold sm:ml-auto">Pharmacy </div>
       </div>
     </header>
   )
