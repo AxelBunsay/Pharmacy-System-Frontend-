@@ -39,7 +39,7 @@ export default function Topbar({ onToggle }) {
 
           <button
             onClick={() => window.location.href = "/Login"}
-            className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition font-medium"
+            className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition font-medium font-poppins"
           >
             Sign out
           </button>
