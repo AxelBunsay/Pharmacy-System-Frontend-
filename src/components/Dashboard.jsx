@@ -19,7 +19,7 @@ export default function Dashboard({ products = [] }) {
 
   return (
     <div className="space-y-4 flex flex-col gap-2 mt-8">
-      <h2 className="text-xl font-bold mb-4">Dashboard</h2>
+      <h2 className="text-3xl  font-bold font-poppins mb-3 mt-10">Dashboard</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard title="Total products" value={totalProducts} />
         <StatCard title="Low stock" value={lowStock} hint="&lt;= 10 units" />
@@ -37,7 +37,7 @@ export default function Dashboard({ products = [] }) {
               {expiredList.map((p) => (
                 <li key={p.id} className="flex justify-between border-b last:border-b-0 py-1">
                   <span>{p.name} ({p.sku})</span>
-                  <span className="text-red-600 font-semibold">Expired: {p.expiryDate}</span>
+                  <span className="text-green-600 font-semibold">Expired: {p.expiryDate}</span>
                 </li>
               ))}
             </ul>

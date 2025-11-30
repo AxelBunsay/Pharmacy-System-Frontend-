@@ -12,7 +12,6 @@ module.exports = {
       },
 
       colors: {
-        // Supports opacity classes like bg-primary/50, ring-primary/20, etc.
         primary: {
           DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
           dark: 'rgb(var(--primary-dark) / <alpha-value>)',
@@ -24,7 +23,7 @@ module.exports = {
         warning: 'rgb(var(--warning) / <alpha-value>)',
         success: 'rgb(var(--success) / <alpha-value>)',
       },
-          
+
       container: {
         center: true,
         padding: {
@@ -34,6 +33,11 @@ module.exports = {
           xl: '5rem',
           '2xl': '6rem',
         },
+      },
+
+      // ⭐ Add Poppins font here
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },

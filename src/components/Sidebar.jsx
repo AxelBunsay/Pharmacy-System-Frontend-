@@ -25,7 +25,7 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-  <aside className="fixed top-0 left-0 w-[240px] h-screen bg-red-600 px-6 py-6 flex flex-col gap-4 overflow-y-auto pt-[80px]">
+  <aside className="fixed top-0 left-0 w-[240px] h-screen bg-green-600 px-6 py-6 flex flex-col gap-4 overflow-y-auto pt-[80px] shadow-xl">
       <div className="flex flex-col h-full">
         {/* Mobile header with close button */}
         <div className="flex items-center justify-between p-4 border-b sm:hidden">
@@ -47,27 +47,17 @@ export default function Sidebar({ onClose }) {
         {/* Navigation with scroll */}
         <nav className="flex-1 overflow-y-auto py-4 text-white">
           <div className="px-3 space-y-1">
-            <NavItem to="/dashboard" onNavigate={handleNavigate}>Dashboard</NavItem>
-            <NavItem to="/inventory" onNavigate={handleNavigate}>Inventory</NavItem>
-            <NavItem to="/POS" onNavigate={handleNavigate}>POS</NavItem>
-            <NavItem to="/suppliers" onNavigate={handleNavigate}>Suppliers</NavItem>
-            <NavItem to="/reports" onNavigate={handleNavigate}>Reports</NavItem>
+            <NavItem to="/dashboard" className="font-poppins" onNavigate={handleNavigate}>Dashboard</NavItem>
+            <NavItem to="/inventory" className="font-poppins" onNavigate={handleNavigate}>Inventory</NavItem>
+            <NavItem to="/POS" className="font-poppins" onNavigate={handleNavigate}>POS</NavItem>
+            <NavItem to="/suppliers" className="font-poppins" onNavigate={handleNavigate}>Suppliers</NavItem>
+            <NavItem to="/reports" className="font-poppins" onNavigate={handleNavigate}>Sales</NavItem>
           </div>
         </nav>
       </div>
 
       {/* User info footer - fixed at bottom */}
-      <div className="shrink-0 bg-red-600 p-4">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
-            <span className="text-sm font-medium text-white items-center">A</span>
-          </div>
-           <button
-            onClick={() => window.location.href = "/Login"}
-            className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition font-medium"
-          >Sign out</button>
-         </div>
-      </div>
+      
     </aside>
   )
 }
