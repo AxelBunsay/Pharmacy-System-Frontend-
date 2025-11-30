@@ -37,7 +37,7 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
   return (
     <div className="space-y-4 mt-8">
       <div className="flex flex-col gap-2">
-        <h2 className="text-xl font-bold font-poppins mb-2">Inventory</h2>
+        <h2 className="text-3xl font-bold font-poppins mb-3 mt-10">Inventory</h2>
         {/* Search bar below title */}
         <input
           type="text"
