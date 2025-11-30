@@ -31,7 +31,7 @@ export default function Sidebar({ onClose }) {
         <div className="flex items-center justify-between p-4 border-b sm:hidden">
           <div>
             <h2 className="text-lg font-extrabold text-gray-900">Pharmacy Admin</h2>
-            <p className="text-sm text-gray-500">Inventory & reports</p>
+            <p className="text-sm text-gray-550">Inventory & reports</p>
           </div>
           <button 
             onClick={onClose}
