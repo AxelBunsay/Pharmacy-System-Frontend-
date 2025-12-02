@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function StatCard({ title, value, hint }) {
   return (
@@ -10,23 +11,63 @@ function StatCard({ title, value, hint }) {
   )
 }
 
-export default function Dashboard({ products = [] }) {
+export default function Dashboard() {
+  const [products, setProducts] = useState([]);
+  const [lowStockList, setLowStockList] = useState([]);
+  const [soonToExpireList, setSoonToExpireList] = useState([]);
+
+  // ⭐ Update this to your real API endpoint
+  const API_URL = "http://localhost:5000/api/products";
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(API_URL);
+      const data = res.data;
+
+      setProducts(data);
+
+      // Low stock items (<= 10)
+      setLowStockList(data.filter((p) => p.stock <= 10));
+
+      // Medicines expiring in the next 30 days
+      const today = new Date();
+      const soonDate = new Date();
+      soonDate.setDate(today.getDate() + 30);
+
+      const soonExpire = data.filter((p) => {
+        const exp = new Date(p.expiryDate);
+        return exp >= today && exp <= soonDate;
+      });
+
+      setSoonToExpireList(soonExpire);
+
+    } catch (err) {
+      console.log("Error fetching dashboard data:", err);
+    }
+  };
+
   const totalProducts = products.length;
-  const lowStock = products.filter((p) => p.stock <= 10).length;
   const expiredList = products.filter((p) => new Date(p.expiryDate) < new Date());
   const expired = expiredList.length;
   const totalValue = products.reduce((s, p) => s + p.stock * (p.price || 0), 0);
 
   return (
     <div className="space-y-4 flex flex-col gap-2 mt-8">
-      <h2 className="text-3xl  font-bold font-poppins mb-3 mt-10">Dashboard</h2>
+      <h2 className="text-3xl font-bold font-poppins mb-3 mt-10">Dashboard</h2>
+
+      {/* STAT CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard title="Total products" value={totalProducts} />
-        <StatCard title="Low stock" value={lowStock} hint="&lt;= 10 units" />
+        <StatCard title="Low stock" value={lowStockList.length} hint="<= 10 units" />
         <StatCard title="Expired" value={expired} />
         <StatCard title="Inventory value" value={`₱${totalValue.toFixed(2)}`} />
       </div>
 
+      {/* EXPIRED LIST */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="card col-span-2">
           <h3 className="text-lg font-semibold mb-2">Expired Medicines</h3>
@@ -37,12 +78,50 @@ export default function Dashboard({ products = [] }) {
               {expiredList.map((p) => (
                 <li key={p.id} className="flex justify-between border-b last:border-b-0 py-1">
                   <span>{p.name} ({p.sku})</span>
-                  <span className="text-green-600 font-semibold">Expired: {p.expiryDate}</span>
+                  <span className="text-red-600 font-semibold">Expired: {p.expiryDate}</span>
                 </li>
               ))}
             </ul>
           )}
         </div>
+      </div>
+
+      {/* ⭐ LOW STOCK LIST FROM API */}
+      <div className="card">
+        <h3 className="text-lg font-semibold mb-2">Low Stock Items (less than 10)</h3>
+
+        {lowStockList.length === 0 ? (
+          <div className="text-gray-400">No low stock items.</div>
+        ) : (
+          <ul className="space-y-1">
+            {lowStockList.map((p) => (
+              <li key={p.id} className="flex justify-between border-b last:border-b-0 py-1">
+                <span>{p.name} ({p.sku})</span>
+                <span className="text-yellow-600 font-semibold">Stock: {p.stock}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* ⭐ SOON TO EXPIRE ITEMS FROM API */}
+      <div className="card">
+        <h3 className="text-lg font-semibold mb-2">Soon to Expire (Next 30 Days)</h3>
+
+        {soonToExpireList.length === 0 ? (
+          <div className="text-gray-400">No medicines expiring soon.</div>
+        ) : (
+          <ul className="space-y-1">
+            {soonToExpireList.map((p) => (
+              <li key={p.id} className="flex justify-between border-b last:border-b-0 py-1">
+                <span>{p.name} ({p.sku})</span>
+                <span className="text-orange-600 font-semibold">
+                  Expires: {p.expiryDate}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
