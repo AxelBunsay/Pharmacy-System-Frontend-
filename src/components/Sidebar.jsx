@@ -7,7 +7,7 @@ const NavItem = ({ to, children, onNavigate }) => (
     to={to}
     onClick={onNavigate}
     className={({ isActive }) =>
-      'block px-4 py-3 rounded-lg transition-colors duration-150 ' + 
+      'block px-2 py-3 rounded-lg transition-colors duration-150 ' + 
       (isActive ? 'bg-white/20 text-white font-medium' : 'text-white hover:bg-white/10')
     }
   >
@@ -25,7 +25,7 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-  <aside className="fixed top-0 left-0 w-[240px] h-screen bg-green-600 px-6 py-6 flex flex-col gap-4 overflow-y-auto pt-[80px] shadow-xl">
+  <aside className="fixed top-0 left-0 w-[200px] h-screen bg-green-600 px-6 py-6 flex flex-col gap-4 overflow-y-auto pt-[80px] shadow-xl">
       <div className="flex flex-col h-full">
         {/* Mobile header with close button */}
         <div className="flex items-center justify-between p-4 border-b sm:hidden">
