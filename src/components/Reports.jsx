@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { exportToCSV } from '../utils/csv';
 
 export default function Reports({ products = [] }) {
   const [filter, setFilter] = useState("daily");
+  const salesPrintRef = useRef(null); // Reference for Sales Report print
+
+  // PRINT HANDLER
+  const handlePrint = () => {
+    const printContent = salesPrintRef.current.innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+    window.location.reload(); // restore UI
+  };
 
   // Filter logic
   const getFilteredStockData = () => {
@@ -57,20 +69,30 @@ export default function Reports({ products = [] }) {
         </div>
       </div>
 
-      {/* SALES REPORT (SEPARATE CARD) */}
-      <div className="card mb-6">
+      {/* SALES REPORT WITH PRINT BUTTON */}
+      <div className="card mb-6" ref={salesPrintRef}>
         <div className="flex justify-between items-center mb-3">
           <h3 className="font-semibold text-lg">Sales Report</h3>
 
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="border text-sm px-2 py-1 rounded-lg shadow-sm bg-white hover:bg-gray-50 transition cursor-pointer"
-          >
-            <option value="daily">Daily</option>
-            <option value="monthly">Monthly</option>
-            <option value="annual">Annual</option>
-          </select>
+          <div className="flex gap-2">
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="border text-sm px-2 py-1 rounded-lg shadow-sm bg-white hover:bg-gray-50 transition cursor-pointer"
+            >
+              <option value="daily">Daily</option>
+              <option value="monthly">Monthly</option>
+              <option value="annual">Annual</option>
+            </select>
+
+            {/* PRINT BUTTON */}
+            <button
+              onClick={handlePrint}
+              className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 text-sm rounded transition"
+            >
+              Print
+            </button>
+          </div>
         </div>
 
         <p className="text-sm text-gray-500 mb-3">
@@ -100,7 +122,7 @@ export default function Reports({ products = [] }) {
         </div>
       </div>
 
-      {/* STOCK HEALTH REPORT (SEPARATE CARD BELOW SALES) */}
+      {/* STOCK HEALTH REPORT (NO PRINT BUTTON) */}
       <div className="card mb-6">
         <h3 className="font-semibold text-lg mb-3">Stock Health Report</h3>
 
