@@ -6,7 +6,7 @@ function StatCard({ title, value, hint }) {
     <div className="card">
       <div className="text-sm text-gray-500">{title}</div>
       <div className="mt-2 text-2xl font-bold">{value}</div>
-      {hint && <div className="mt-1 text-xs text-gray-400">{hint}</div>}
+      {hint && <div className="mt-1  text-xs  text-gray-400">{hint}</div>}
     </div>
   )
 }
