@@ -13,8 +13,8 @@ export default function ProductCard({ product, onEdit, onDelete }) {
       <td className="py-2 px-3">{product.expiryDate}{expired && <span className="ml-2 text-xs text-red-600">(expired)</span>}</td>
       <td className="py-2 px-3">
         <div className="flex gap-2">
-          <button onClick={() => onEdit(product)} className="px-2 py-1 border rounded text-sm">Edit</button>
-          <button onClick={() => onDelete(product.id)} className="px-2 py-1 border rounded text-sm text-red-600">Delete</button>
+          <button onClick={() => onEdit(product)} className="px-2 py-1 border rounded bg-green-400 text-white text-sm">Edit</button>
+          <button onClick={() => onDelete(product.id)} className="px-2 py-1 border rounded bg-red-400 text-white text-sm">Delete</button>
         </div>
       </td>
     </tr>
