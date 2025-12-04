@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { exportToCSV } from '../utils/csv';
+import { ResponsiveLine } from '@nivo/line';
 
 export default function Reports({ products = [] }) {
   const [filter, setFilter] = useState("daily");
@@ -80,7 +81,7 @@ export default function Reports({ products = [] }) {
               onChange={(e) => setFilter(e.target.value)}
               className="border text-sm px-2 py-1 rounded-lg shadow-sm bg-white hover:bg-gray-50 transition cursor-pointer"
             >
-              <option value="daily">Daily</option>
+              <option value="daily">Weekly</option>
               <option value="monthly">Monthly</option>
               <option value="annual">Annual</option>
             </select>
@@ -119,6 +120,96 @@ export default function Reports({ products = [] }) {
               ))}
             </ul>
           )}
+        </div>
+
+        {/* SALES LINE CHART FILTERED */}
+        <div className="bg-white rounded shadow p-4 mt-6" style={{ height: 300 }}>
+          <h3 className="text-lg font-semibold mb-2">
+            {filter === 'daily' && 'Sales (Weekly)'}
+            {filter === 'monthly' && 'Sales (Monthly)'}
+            {filter === 'annual' && 'Sales (Annual)'}
+          </h3>
+          <ResponsiveLine
+            data={
+              filter === 'daily'
+                ? [{
+                    id: 'Sales',
+                    color: 'hsl(205, 70%, 50%)',
+                    data: [
+                      { x: 'Week 1', y: 120 },
+                      { x: 'Week 2', y: 210 },
+                      { x: 'Week 3', y: 150 },
+                      { x: 'Week 4', y: 300 },
+                    ],
+                  }]
+                : filter === 'monthly'
+                ? [{
+                    id: 'Sales',
+                    color: 'hsl(205, 70%, 50%)',
+                    data: [
+                      { x: 'Jan', y: 800 },
+                      { x: 'Feb', y: 950 },
+                      { x: 'Mar', y: 700 },
+                      { x: 'Apr', y: 1200 },
+                      { x: 'May', y: 1100 },
+                      { x: 'Jun', y: 1300 },
+                      { x: 'Jul', y: 900 },
+                      { x: 'Aug', y: 1000 },
+                      { x: 'Sep', y: 1150 },
+                      { x: 'Oct', y: 1250 },
+                      { x: 'Nov', y: 1400 },
+                      { x: 'Dec', y: 1500 },
+                    ],
+                  }]
+                : [{
+                    id: 'Sales',
+                    color: 'hsl(205, 70%, 50%)',
+                    data: [
+                      { x: '2021', y: 12000 },
+                      { x: '2022', y: 18000 },
+                      { x: '2023', y: 15000 },
+                      { x: '2024', y: 20000 },
+                      { x: '2025', y: 22000 },
+                    ],
+                  }]
+            }
+            margin={{ top: 30, right: 40, bottom: 50, left: 60 }}
+            xScale={{ type: 'point' }}
+            yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              orient: 'bottom',
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend:
+                filter === 'daily'
+                  ? 'Week'
+                  : filter === 'monthly'
+                  ? 'Month'
+                  : 'Year',
+              legendOffset: 36,
+              legendPosition: 'middle',
+            }}
+            axisLeft={{
+              orient: 'left',
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: 'Sales',
+              legendOffset: -50,
+              legendPosition: 'middle',
+            }}
+            colors={{ scheme: 'nivo' }}
+            pointSize={10}
+            pointColor={{ theme: 'background' }}
+            pointBorderWidth={2}
+            pointBorderColor={{ from: 'serieColor' }}
+            pointLabelYOffset={-12}
+            useMesh={true}
+            enableSlices="x"
+          />
         </div>
       </div>
 
