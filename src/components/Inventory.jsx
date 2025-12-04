@@ -44,7 +44,7 @@ export default function Inventory({ products = [], addProduct, updateProduct, de
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search by name or SKU..."
-          className="input w-full mb-2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400"
+          className="input w-full mb-2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         {/* Action buttons below search bar, left-aligned, minimal padding */}
         <div className="flex flex-row gap-2 mt-1">
