@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 export default function POS({ products = [], setProducts }) {
@@ -9,14 +8,12 @@ export default function POS({ products = [], setProducts }) {
     setCart((prev) => {
       const found = prev.find((item) => item.id === medicine.id);
       if (found) {
-        // Don't allow adding more than available stock
         if (found.qty < medicine.stock) {
           return prev.map((item) =>
             item.id === medicine.id ? { ...item, qty: item.qty + 1 } : item
           );
-        } else {
-          return prev;
         }
+        return prev;
       }
       if (medicine.stock > 0) {
         return [...prev, { ...medicine, qty: 1 }];
@@ -46,7 +43,6 @@ export default function POS({ products = [], setProducts }) {
   );
 
   const handleCheckout = () => {
-    // Decrease stock in products for each item in cart
     setProducts((prevProducts) =>
       prevProducts.map((p) => {
         const cartItem = cart.find((item) => item.id === p.id);
@@ -61,101 +57,116 @@ export default function POS({ products = [], setProducts }) {
 
   return (
     <div className="mt-8 space-y-6">
-      <h2 className="text-3xl font-bold font-poppins mt-20">Point of Sale (POS)</h2>
+      <h2 className="text-3xl font-bold mt-10">Point of Sale (POS)</h2>
+
       <input
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search medicines..."
-        className="input w-full max-w-md mb-4 px-4 py-2 border border-gray-300 rounded"
+        className="w-full max-w-md mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
+
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Medicine List */}
+        {/* Medicines */}
         <div className="flex-1">
           <h3 className="font-semibold mb-2">Medicines</h3>
-          <div className="card overflow-auto max-h-96">
-            <table className="w-full table-auto">
-              <thead>
+          <div className="overflow-auto max-h-96 border rounded">
+            <table className="w-full table-auto border-collapse border border-gray-300">
+              <thead className="bg-gray-100">
                 <tr className="text-left text-sm text-gray-500">
-                  <th className="py-2 px-3">Name</th>
-                  <th className="py-2 px-3">Price</th>
-                  <th className="py-2 px-3">Stock</th>
-                  <th></th>
+                  <th className="py-2 px-3 border border-gray-300">Name</th>
+                  <th className="py-2 px-3 border border-gray-300">Price</th>
+                  <th className="py-2 px-3 border border-gray-300">Stock</th>
+                  <th className="py-2 px-3 border border-gray-300 text-center">Add</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredMedicines.map((m) => (
-                  <tr key={m.id}>
-                    <td className="py-2 px-3">{m.name}</td>
-                    <td className="py-2 px-3">${m.price}</td>
-                    <td className="py-2 px-3">{m.stock}</td>
-                    <td>
-                      <button
-                        className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
-                        onClick={() => addToCart(m)}
-                        disabled={cart.find((item) => item.id === m.id) || m.stock === 0}
-                      >
-                        Add
-                      </button>
+                {filteredMedicines.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="p-4 text-center text-gray-400 border border-gray-300">
+                      No medicines found
                     </td>
                   </tr>
-                ))}
-                {filteredMedicines.length === 0 && (
-                  <tr><td colSpan={4} className="p-4 text-center text-gray-400">No medicines found</td></tr>
+                ) : (
+                  filteredMedicines.map((m) => (
+                    <tr key={m.id}>
+                      <td className="py-2 px-3 border border-gray-300">{m.name}</td>
+                      <td className="py-2 px-3 border border-gray-300">${m.price}</td>
+                      <td className="py-2 px-3 border border-gray-300">{m.stock}</td>
+                      <td className="py-2 px-3 border border-gray-300 text-center">
+                        <button
+                          className={`px-3 py-1 rounded text-white font-semibold ${
+                            m.stock === 0 || cart.find((item) => item.id === m.id)
+                              ? 'bg-gray-400 cursor-not-allowed'
+                              : 'bg-red-600 hover:bg-red-700'
+                          }`}
+                          onClick={() => addToCart(m)}
+                          disabled={cart.find((item) => item.id === m.id) || m.stock === 0}
+                        >
+                          Add
+                        </button>
+                      </td>
+                    </tr>
+                  ))
                 )}
               </tbody>
             </table>
           </div>
         </div>
+
         {/* Cart */}
         <div className="flex-1">
           <h3 className="font-semibold mb-2">Cart</h3>
-          <div className="card overflow-auto max-h-96">
-            <table className="w-full table-auto">
-              <thead>
+          <div className="overflow-auto max-h-96 border rounded">
+            <table className="w-full table-auto border-collapse border border-gray-300">
+              <thead className="bg-gray-100">
                 <tr className="text-left text-sm text-gray-500">
-                  <th className="py-2 px-3">Name</th>
-                  <th className="py-2 px-3">Qty</th>
-                  <th className="py-2 px-3">Price</th>
-                  <th className="py-2 px-3">Total</th>
-                  <th></th>
+                  <th className="py-2 px-3 border border-gray-300">Name</th>
+                  <th className="py-2 px-3 border border-gray-300 text-center">Qty</th>
+                  <th className="py-2 px-3 border border-gray-300">Price</th>
+                  <th className="py-2 px-3 border border-gray-300">Total</th>
+                  <th className="py-2 px-3 border border-gray-300 text-center">Remove</th>
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item) => (
-                  <tr key={item.id}>
-                    <td className="py-2 px-3">{item.name}</td>
-                    <td className="py-2 px-3">
-                      <input
-                        type="number"
-                        min="1"
-                        max={(() => {
-                          const product = products.find((p) => p.id === item.id);
-                          return product ? product.stock : 1;
-                        })()}
-                        value={item.qty}
-                        onChange={(e) => updateQty(item.id, parseInt(e.target.value) || 1)}
-                        className="w-16 px-2 py-1 border rounded"
-                      />
-                    </td>
-                    <td className="py-2 px-3">${item.price}</td>
-                    <td className="py-2 px-3">${(item.price * item.qty).toFixed(2)}</td>
-                    <td>
-                      <button
-                        className="text-red-600 hover:underline"
-                        onClick={() => removeFromCart(item.id)}
-                      >
-                        Remove
-                      </button>
+                {cart.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="p-4 text-center text-gray-400 border border-gray-300">
+                      Cart is empty
                     </td>
                   </tr>
-                ))}
-                {cart.length === 0 && (
-                  <tr><td colSpan={5} className="p-4 text-center text-gray-400">Cart is empty</td></tr>
+                ) : (
+                  cart.map((item) => (
+                    <tr key={item.id}>
+                      <td className="py-2 px-3 border border-gray-300">{item.name}</td>
+                      <td className="py-2 px-3 border border-gray-300 text-center">
+                        <input
+                          type="number"
+                          min="1"
+                          max={products.find((p) => p.id === item.id)?.stock || 1}
+                          value={item.qty}
+                          onChange={(e) => updateQty(item.id, parseInt(e.target.value) || 1)}
+                          className="w-16 px-2 py-1 border rounded text-center"
+                        />
+                      </td>
+                      <td className="py-2 px-3 border border-gray-300">${item.price}</td>
+                      <td className="py-2 px-3 border border-gray-300">${(item.price * item.qty).toFixed(2)}</td>
+                      <td className="py-2 px-3 border border-gray-300 text-center">
+                        <button
+                          className="text-red-600 hover:underline font-semibold"
+                          onClick={() => removeFromCart(item.id)}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))
                 )}
               </tbody>
             </table>
           </div>
+
           <div className="mt-4 flex justify-between items-center">
             <span className="font-bold">Total: ${total.toFixed(2)}</span>
             <button
