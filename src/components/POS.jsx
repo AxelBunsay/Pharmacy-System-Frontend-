@@ -159,11 +159,11 @@ export default function POS({ products = [], setProducts }) {
           <div className="mt-4 flex justify-between items-center">
             <span className="font-bold">Total: ${total.toFixed(2)}</span>
             <button
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-semibold"
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold"
               disabled={cart.length === 0}
               onClick={handleCheckout}
             >
-              Checkout
+              Print Receipt
             </button>
           </div>
         </div>
