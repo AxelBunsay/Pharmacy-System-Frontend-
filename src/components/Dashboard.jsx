@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { ResponsiveLine } from '@nivo/line';
 
 function StatCard({ title, value, hint }) {
   return (
@@ -12,6 +13,27 @@ function StatCard({ title, value, hint }) {
 }
 
 export default function Dashboard() {
+    // Example monthly sales data for the line chart (replace with real sales data)
+    const monthlySalesData = [
+      {
+        id: 'Sales',
+        color: 'hsl(205, 70%, 50%)',
+        data: [
+          { x: 'Jan', y: 800 },
+          { x: 'Feb', y: 950 },
+          { x: 'Mar', y: 700 },
+          { x: 'Apr', y: 1200 },
+          { x: 'May', y: 1100 },
+          { x: 'Jun', y: 1300 },
+          { x: 'Jul', y: 900 },
+          { x: 'Aug', y: 1000 },
+          { x: 'Sep', y: 1150 },
+          { x: 'Oct', y: 1250 },
+          { x: 'Nov', y: 1400 },
+          { x: 'Dec', y: 1500 },
+        ],
+      },
+    ];
   const [products, setProducts] = useState([]);
   const [lowStockList, setLowStockList] = useState([]);
   const [soonToExpireList, setSoonToExpireList] = useState([]);
@@ -55,6 +77,20 @@ export default function Dashboard() {
   const expired = expiredList.length;
   const totalValue = products.reduce((s, p) => s + p.stock * (p.price || 0), 0);
 
+  // Example sales data for the line chart (replace with real sales data)
+  const salesData = [
+    {
+      id: 'Sales',
+      color: 'hsl(205, 70%, 50%)',
+      data: [
+        { x: 'Week 1', y: 6700 },
+        { x: 'Week 2', y: 8000 },
+        { x: 'Week 3', y: 5000 },
+        { x: 'Week 4', y: 10000 },
+      ],
+    },
+  ];
+
   return (
     <div className="space-y-4 flex flex-col gap-2 mt-8">
       <h2 className="text-3xl font-bold font-poppins mb-3 mt-10">Dashboard</h2>
@@ -66,6 +102,8 @@ export default function Dashboard() {
         <StatCard title="Expired" value={expired} />
         <StatCard title="Inventory value" value={`₱${totalValue.toFixed(2)}`} />
       </div>
+
+      {/* ...existing code... */}
 
       {/* EXPIRED LIST */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
