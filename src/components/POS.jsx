@@ -59,9 +59,19 @@ export default function POS({ products = [], setProducts }) {
   return (
     <div className="mt-8 space-y-6">
       <h2 className="text-3xl font-bold mt-10">Point of Sale (POS)</h2>
+      <div className="mb-4 flex gap-2">
+        <button
+          className={`px-4 py-2 rounded ${tab === 'pos' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}
+          onClick={() => setTab('pos')}
+        >POS</button>
+        <button
+          className={`px-4 py-2 rounded ${tab === 'receipt' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}
+          onClick={() => setTab('receipt')}
+          disabled={cart.length === 0}
+        >Receipt</button>
+      </div>
       {tab === 'pos' && (
         <>
-          {/* ...existing POS code... */}
           <input
             type="text"
             value={search}
