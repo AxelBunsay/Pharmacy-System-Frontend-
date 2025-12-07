@@ -200,7 +200,7 @@ export default function POS({ products = [], setProducts }) {
           <div className="text-xs text-gray-500 mb-4">{new Date().toLocaleString()}</div>
           <div className="mb-2 flex justify-between items-center">
             <span className="font-semibold">Receipt No:</span>
-            <span>{Math.floor(100000 + Math.random() * 900000)}</span>
+            <span>{Math.floor(100000 + Math.random() * 1000000)}</span>
           </div>
           {/* Sales Report Filter */}
           <div className="mb-4">
