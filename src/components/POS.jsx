@@ -195,7 +195,22 @@ export default function POS({ products = [], setProducts }) {
       )}
       {tab === 'receipt' && (
         <div className="card p-6 max-w-lg mx-auto">
-          <h3 className="text-xl font-bold mb-4">Receipt</h3>
+          <h3 className="text-xl font-bold mb-2">Marquez Pharmacy</h3>
+          <div className="text-sm text-gray-600 mb-2">123 Main St, City<br/>Tel: (123) 456-7890</div>
+          <div className="text-xs text-gray-500 mb-4">{new Date().toLocaleString()}</div>
+          <div className="mb-2 flex justify-between items-center">
+            <span className="font-semibold">Receipt No:</span>
+            <span>{Math.floor(100000 + Math.random() * 900000)}</span>
+          </div>
+          {/* Sales Report Filter */}
+          <div className="mb-4">
+            <label className="mr-2 font-semibold text-sm">Sales Report:</label>
+            <select className="border px-2 py-1 rounded text-sm">
+              <option>Today</option>
+              <option>This Week</option>
+              <option>This Month</option>
+            </select>
+          </div>
           <table className="w-full mb-4">
             <thead>
               <tr className="text-left text-sm text-gray-500">
@@ -216,7 +231,8 @@ export default function POS({ products = [], setProducts }) {
               ))}
             </tbody>
           </table>
-          <div className="font-bold text-right mb-4">Total: ${total.toFixed(2)}</div>
+          <div className="font-bold text-right mb-2">Total: ${total.toFixed(2)}</div>
+          <div className="text-xs text-gray-500 mb-4">Thank you for your purchase!</div>
           <button
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full"
             onClick={() => window.print()}
