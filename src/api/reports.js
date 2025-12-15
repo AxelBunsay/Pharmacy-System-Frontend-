@@ -48,6 +48,7 @@ export async function fetchReportsMonthly(month, year, page = 1) {
     },
   );
 
+  
   if (!res.ok) throw new Error("Failed to fetch monthly reports.");
 
   return res.json();
