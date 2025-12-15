@@ -1,12 +1,19 @@
+const API_URL = import.meta.env.VITE_API_URL;
 
-export async function login({ username, password }) {
-  const res = await fetch(`${API_URL}/auth/login`, {
+export async function checkOutBulk(items) {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found. Please log in.");
+
+  const res = await fetch(`${API_URL}/sales/bulk`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(items),
   });
 
-  if (!res.ok) throw new Error("Login failed");
+  if (!res.ok) throw new Error("Fetching suppliers failed");
 
-  return res.json();
+  return true;
 }
