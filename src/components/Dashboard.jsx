@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchSummary } from "../api/products";
 
+
 function StatCard({ title, value, hint }) {
   return (
     <div className="card">
