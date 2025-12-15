@@ -29,6 +29,8 @@ function ListSection({ title, items, emptyMessage, renderItem }) {
   );
 }
 
+
+
 export default function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
