@@ -161,11 +161,11 @@ export default function Dashboard() {
           </ul>
         )}
       </div>
-
-      <div className="card">
+<div className="card">
         <h3 className="text-lg font-semibold mb-2">
           Soon to Expire (Next 30 Days)
         </h3>
+      
 
         {!soon_to_expire || soon_to_expire.length === 0 || soon_to_expire === "No medicines expiring soon." ? (
           <div className="text-gray-400 p-2">
