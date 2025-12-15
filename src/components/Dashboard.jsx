@@ -52,7 +52,6 @@ export default function Dashboard() {
       setLoading(false);
     }
   };
-
   if (loading) {
     return (
       <div className="space-y-4 flex flex-col gap-2 mt-8">
