@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchSummary } from "../api/products";
 
+
 function StatCard({ title, value, hint }) {
   return (
     <div className="card">
@@ -139,7 +140,8 @@ export default function Dashboard() {
           Low Stock Items (less than 10)
         </h3>
 
-        {!low_stock_items || low_stock_items.length === 0 || low_stock_items === "No low stock items." ? (
+       
+       {!low_stock_items || low_stock_items.length === 0 || low_stock_items === "No low stock items." ? (
           <div className="text-gray-400 p-2">
             {typeof low_stock_items === 'string' ? low_stock_items : "No low stock items."}
           </div>
@@ -165,7 +167,6 @@ export default function Dashboard() {
         <h3 className="text-lg font-semibold mb-2">
           Soon to Expire (Next 30 Days)
         </h3>
-      
 
         {!soon_to_expire || soon_to_expire.length === 0 || soon_to_expire === "No medicines expiring soon." ? (
           <div className="text-gray-400 p-2">
