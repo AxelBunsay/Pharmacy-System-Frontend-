@@ -158,7 +158,6 @@ export default function Reports() {
           break;
         case "weekly":
           response = await fetchReportsWeekly(
-            today.toISOString().split("T")[0],
             pageNum,
           );
           break;
