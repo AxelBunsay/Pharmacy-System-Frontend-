@@ -87,9 +87,9 @@ export default function Inventory() {
     }
   };
 
-  useEffect(async () => {
+  useEffect( () => {
     if (products.length > 0 && suppliers.length > 0) {
-      const processedProducts = await processProductsWithSuppliers(products);
+      const processedProducts = processProductsWithSuppliers(products);
       setProducts(processedProducts);
       setFiltered(processedProducts);
     }
