@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchSummary } from "../api/products";
 
-
 function StatCard({ title, value, hint }) {
   return (
     <div className="card">
@@ -29,8 +28,6 @@ function ListSection({ title, items, emptyMessage, renderItem }) {
   );
 }
 
-
-
 export default function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,7 +50,6 @@ export default function Dashboard() {
     }
   };
 
-  
   if (loading) {
     return (
       <div className="space-y-4 flex flex-col gap-2 mt-8">
@@ -85,6 +81,7 @@ export default function Dashboard() {
       </div>
     );
   }
+  
 
   const { total_products, low_stock, expired, inventory_value } =
     summary.summary;
@@ -143,8 +140,7 @@ export default function Dashboard() {
           Low Stock Items (less than 10)
         </h3>
 
-       
-       {!low_stock_items || low_stock_items.length === 0 || low_stock_items === "No low stock items." ? (
+        {!low_stock_items || low_stock_items.length === 0 || low_stock_items === "No low stock items." ? (
           <div className="text-gray-400 p-2">
             {typeof low_stock_items === 'string' ? low_stock_items : "No low stock items."}
           </div>
@@ -166,7 +162,8 @@ export default function Dashboard() {
           </ul>
         )}
       </div>
-<div className="card">
+
+      <div className="card">
         <h3 className="text-lg font-semibold mb-2">
           Soon to Expire (Next 30 Days)
         </h3>
