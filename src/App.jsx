@@ -1,62 +1,136 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Topbar from './components/Topbar';
-import Dashboard from './components/Dashboard';
-import Inventory from './components/Inventory';
-import POS from './components/POS';
-import Suppliers from './components/Suppliers';
-import Reports from './components/Reports';
-import Login from './components/Login';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Topbar from "./components/Topbar";
+import Dashboard from "./components/Dashboard";
+import Inventory from "./components/Inventory";
+import POS from "./components/POS";
+import Suppliers from "./components/Suppliers";
+import Reports from "./components/Reports";
+import Login from "./components/Login";
+import Logout from "./components/LogOut";
+import NotFound from "./components/NotFound";
+import { isTokenValid } from "./utils/validateToken";
 
-export default function App() {
-  const [products, setProducts] = useState([]);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  
+function AppLayout({ children }) {
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
-  useEffect(() => {
-    const stored = localStorage.getItem('pharmacy_products');
-    if (stored) setProducts(JSON.parse(stored));
-    else {
-      setProducts(exampleProducts);
-      localStorage.setItem('pharmacy_products', JSON.stringify(exampleProducts));
-    }
-  }, []);
+  const handleToggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
-  useEffect(() => {
-    localStorage.setItem('pharmacy_products', JSON.stringify(products));
-  }, [products]);
-
-  const addProduct = (p) => setProducts((s) => [{ ...p, id: Date.now().toString() }, ...s]);
-  const updateProduct = (id, patch) => setProducts((s) => s.map((p) => (p.id === id ? { ...p, ...patch } : p)));
-  const deleteProduct = (id) => setProducts((s) => s.filter((p) => p.id !== id));
-
-  const AppLayout = ({ children }) => (
+  return (
     <div className="min-h-screen flex bg-gray-50">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onToggle={handleToggleSidebar} />
 
-      {/* Main content */}
       <div className="flex-1 min-h-screen ml-[200px]">
-        <Topbar onToggle={() => setSidebarOpen((s) => !s)} />
-        <main className="p-6">{children}</main>
+        {/* Topbar */}
+        <Topbar onToggle={handleToggleSidebar} />
+
+        {/* Main Content */}
+        <main className="p-6 mt-[64px]">{children}</main>
       </div>
     </div>
   );
+}
 
+function PrivateRoute({ children }) {
+  return isTokenValid() ? children : <Navigate to="/login" replace />;
+}
+
+function PublicRoute({ children }) {
+  return isTokenValid() ? <Navigate to="/dashboard" replace /> : children;
+}
+
+export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Login routes */}
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Authenticated routes */}
-        <Route path="/dashboard" element={<AppLayout><Dashboard products={products} /></AppLayout>} />
-        <Route path="/inventory" element={<AppLayout><Inventory products={products} addProduct={addProduct} updateProduct={updateProduct} deleteProduct={deleteProduct} /></AppLayout>} />
-        <Route path="/pos" element={<AppLayout><POS products={products} setProducts={setProducts} /></AppLayout>} />
-        <Route path="/suppliers" element={<AppLayout><Suppliers /></AppLayout>} />
-        <Route path="/reports" element={<AppLayout><Reports products={products} /></AppLayout>} />
+        {/* PUBLIC ROUTES */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+
+        {/* PRIVATE ROUTES */}
+        <Route
+          path="/logout"
+          element={
+            <PrivateRoute>
+              <Logout />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Dashboard />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/inventory"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Inventory />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/pos"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <POS />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/suppliers"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Suppliers />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Reports />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+        {/* NOT FOUND */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
