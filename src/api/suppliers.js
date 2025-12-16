@@ -16,3 +16,21 @@ export async function getSuppliers() {
 
   return res.json();
 }
+
+export async function addSupplier(supplier) {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found. Please log in.");
+
+  const res = await fetch(${API_URL}/suppliers/, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: Bearer ${token},
+    },
+    body: JSON.stringify(supplier),
+  });
+
+  if (!res.ok) throw new Error("Adding supplier failed");
+
+  return res.json();
+}
