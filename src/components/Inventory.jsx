@@ -69,7 +69,7 @@ export default function Inventory() {
       const res = await getProducts(pageNum);
       const newProducts = res.data || [];
 
-      const processedProducts = processProductsWithSuppliers(newProducts);
+      const processedProducts = await processProductsWithSuppliers(newProducts);
 
       setProducts((prev) =>
         reset ? processedProducts : [...prev, ...processedProducts],
@@ -87,9 +87,9 @@ export default function Inventory() {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (products.length > 0 && suppliers.length > 0) {
-      const processedProducts = processProductsWithSuppliers(products);
+      const processedProducts = await processProductsWithSuppliers(products);
       setProducts(processedProducts);
       setFiltered(processedProducts);
     }
@@ -115,7 +115,7 @@ export default function Inventory() {
     const timer = setTimeout(async () => {
       try {
         const results = await searchBySKUorName(search);
-        const processedResults = processProductsWithSuppliers(results);
+        const processedResults = await processProductsWithSuppliers(results);
         setFiltered(processedResults);
       } catch (err) {
         console.error(err);
