@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function getSuppliers() {
   const token = localStorage.getItem("token");
@@ -21,11 +21,11 @@ export async function addSupplier(supplier) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/suppliers/, {
+  const res = await fetch(`${API_URL}/suppliers/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(supplier),
   });
@@ -39,11 +39,11 @@ export async function deleteSupplier(supplierId) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/suppliers/${supplierId}, {
+  const res = await fetch(`${API_URL}/suppliers/${supplierId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -56,11 +56,11 @@ export async function updateSupplier(supplierId, supplier) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/suppliers/${supplierId}, {
+  const res = await fetch(`${API_URL}/suppliers/${supplierId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(supplier),
   });

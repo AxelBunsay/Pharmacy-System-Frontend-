@@ -4,11 +4,11 @@ export async function fetchProfile() {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/profile/, {
+  const res = await fetch(`${API_URL}/profile/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 

@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { exportToCSV } from "../utils/csv";
 import { ResponsiveLine } from "@nivo/line";
 import {
@@ -1087,4 +1088,4 @@ export default function Reports() {
       </div>
     </div>
   );
-} 
+}

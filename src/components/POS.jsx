@@ -87,7 +87,7 @@ export default function POS() {
           const product = results[0];
 
           if (product.is_archived) {
-            setScanError(${product.name} is archived);
+            setScanError(`${product.name} is archived`);
             setTimeout(() => {
               setScanError("");
               setScanning(false);
@@ -96,7 +96,7 @@ export default function POS() {
           }
 
           if (product.stock <= 0) {
-            setScanError(${product.name} is out of stock);
+            setScanError(`${product.name} is out of stock`);
             setTimeout(() => {
               setScanError("");
               setScanning(false);
@@ -109,13 +109,13 @@ export default function POS() {
           if (existingItem) {
             if (existingItem.qty < product.stock) {
               updateQty(product.id, existingItem.qty + 1);
-              setScanResult(✓ Added ${product.name});
+              setScanResult(`✓ Added ${product.name}`);
             } else {
-              setScanError(Only ${product.stock} available);
+              setScanError(`Only ${product.stock} available`);
             }
           } else {
             addToCart(product);
-            setScanResult(✓ Added ${product.name});
+            setScanResult(`✓ Added ${product.name}`);
           }
 
           setTimeout(() => {
@@ -124,7 +124,7 @@ export default function POS() {
             setLastScanned("");
           }, 1500);
         } else {
-          setScanError(✗ Product not found);
+          setScanError(`✗ Product not found`);
           setTimeout(() => {
             setScanError("");
             setScanning(false);
@@ -153,12 +153,12 @@ export default function POS() {
 
   const addToCart = (product) => {
     if (product.is_archived) {
-      alert(Product ${product.name} is archived and cannot be sold);
+      alert(`Product ${product.name} is archived and cannot be sold`);
       return;
     }
 
     if (product.stock <= 0) {
-      alert(Product ${product.name} is out of stock);
+      alert(`Product ${product.name} is out of stock`);
       return;
     }
 
@@ -170,7 +170,7 @@ export default function POS() {
             item.id === product.id ? { ...item, qty: item.qty + 1 } : item,
           );
         } else {
-          alert(Only ${product.stock} units available for ${product.name});
+          alert(`Only ${product.stock} units available for ${product.name}`);
           return prev;
         }
       }
@@ -219,7 +219,7 @@ export default function POS() {
       const product = products.find((p) => p.id === item.id);
       if (product && item.qty > product.stock) {
         alert(
-          Cannot checkout: ${item.name} only has ${product.stock} units available,
+          `Cannot checkout: ${item.name} only has ${product.stock} units available`,
         );
         return;
       }
@@ -244,7 +244,7 @@ export default function POS() {
         setPage(1);
         await loadProducts();
 
-        alert(Successfully processed sale(s));
+        alert(`Successfully processed sale(s)`);
         setTab("receipt");
         setCart([]);
       } else {
@@ -252,7 +252,7 @@ export default function POS() {
       }
     } catch (error) {
       console.error("Checkout error:", error);
-      alert(Checkout failed: ${error.message || "Unknown error"});
+      alert(`Checkout failed: ${error.message || "Unknown error"}`);
     }
   };
 

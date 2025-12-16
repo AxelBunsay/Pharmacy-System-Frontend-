@@ -4,11 +4,11 @@ export async function fetchReportsDaily(date, page = 1) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/sales/daily/${date}?page=${page}, {
+  const res = await fetch(`${API_URL}/sales/daily/${date}?page=${page}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -16,15 +16,16 @@ export async function fetchReportsDaily(date, page = 1) {
 
   return res.json();
 }
+
 export async function fetchReportsWeekly(page = 1) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/sales/weekly?page=${page}, {
+  const res = await fetch(`${API_URL}/sales/weekly?page=${page}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -38,17 +39,16 @@ export async function fetchReportsMonthly(month, year, page = 1) {
   if (!token) throw new Error("No token found. Please log in.");
 
   const res = await fetch(
-    ${API_URL}/sales/monthly/${month}/${year}?page=${page},
+    `${API_URL}/sales/monthly/${month}/${year}?page=${page}`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: Bearer ${token},
+        Authorization: `Bearer ${token}`,
       },
     },
   );
 
-  
   if (!res.ok) throw new Error("Failed to fetch monthly reports.");
 
   return res.json();
@@ -58,11 +58,11 @@ export async function fetchReportsYearly(year, page = 1) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/sales/annual/${year}?page=${page}, {
+  const res = await fetch(`${API_URL}/sales/annual/${year}?page=${page}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -76,12 +76,12 @@ export async function fetchReportsByRange(startDate, endDate, page = 1) {
   if (!token) throw new Error("No token found. Please log in.");
 
   const res = await fetch(
-    ${API_URL}/sales/range/${startDate}/${endDate}?page=${page},
+    `${API_URL}/sales/range/${startDate}/${endDate}?page=${page}`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: Bearer ${token},
+        Authorization: `Bearer ${token}`,
       },
     },
   );

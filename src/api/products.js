@@ -4,11 +4,11 @@ export async function getProducts(page = 1) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/products?page=${page}, {
+  const res = await fetch(`${API_URL}/products?page=${page}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -21,11 +21,11 @@ export async function addProduct(product) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/products/, {
+  const res = await fetch(`${API_URL}/products/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(product),
   });
@@ -39,11 +39,11 @@ export async function updateProduct(id, product) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/products/${id}/, {
+  const res = await fetch(`${API_URL}/products/${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(product),
   });
@@ -57,11 +57,11 @@ export async function deleteProduct(id) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/products/${id}/, {
+  const res = await fetch(`${API_URL}/products/${id}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -75,12 +75,12 @@ export async function searchBySKUorName(query) {
   if (!token) throw new Error("No token found. Please log in.");
 
   const res = await fetch(
-    ${API_URL}/products/search?query=${encodeURIComponent(query)},
+    `${API_URL}/products/search?query=${encodeURIComponent(query)}`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: Bearer ${token},
+        Authorization: `Bearer ${token}`,
       },
     },
   );
@@ -94,11 +94,11 @@ export async function fetchSummary() {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
 
-  const res = await fetch(${API_URL}/products/summary, {
+  const res = await fetch(`${API_URL}/products/summary`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: Bearer ${token},
+      Authorization: `Bearer ${token}`,
     },
   });
 

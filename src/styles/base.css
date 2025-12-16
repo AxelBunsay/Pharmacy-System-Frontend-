@@ -37,16 +37,16 @@ body {
     scrollbar-width: thin;
     scrollbar-color: var(--secondary) transparent;
   }
-  
+
   .scrollbar-slim::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
-  
+
   .scrollbar-slim::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
-  
+
   .scrollbar-slim::-webkit-scrollbar-thumb {
     @apply bg-gray-400 rounded-full hover:bg-gray-500;
   }

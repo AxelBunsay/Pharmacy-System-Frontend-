@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchSummary } from "../api/products";
 
-
 function StatCard({ title, value, hint }) {
   return (
     <div className="card">
@@ -53,7 +52,7 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="space-y-3 flex flex-col gap-2 mt-8">
+      <div className="space-y-4 flex flex-col gap-2 mt-8">
         <h2 className="text-3xl font-bold font-poppins mb-3 mt-10">
           Dashboard
         </h2>

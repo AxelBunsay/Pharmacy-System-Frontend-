@@ -30,7 +30,7 @@ export default function Suppliers() {
   }
 
   const handleCopyContact = (supplier) => {
-    const text = ${supplier.name}\n${supplier.contact};
+    const text = `${supplier.name}\n${supplier.contact}`;
     navigator.clipboard.writeText(text);
     alert("Contact info copied!");
   };

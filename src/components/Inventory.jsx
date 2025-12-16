@@ -200,8 +200,6 @@ export default function Inventory() {
             Scan Barcode
           </button>
 
-
-          
           <button
             onClick={() => {
               setEditing(null);
@@ -212,6 +210,7 @@ export default function Inventory() {
           >
             Add Product
           </button>
+
           <button
             onClick={handleExportCSV}
             className="bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-1 rounded transition"
@@ -221,8 +220,6 @@ export default function Inventory() {
           </button>
         </div>
       </div>
-
-
 
       {scanOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -367,7 +364,8 @@ export default function Inventory() {
           </button>
         </div>
       )}
-<ProductModal
+
+      <ProductModal
         open={open}
         onClose={() => setOpen(false)}
         initial={editing}
@@ -375,6 +373,5 @@ export default function Inventory() {
         suppliers={suppliers}
       />
     </div>
-      
   );
 }
