@@ -115,7 +115,7 @@ export default function Inventory() {
     const timer = setTimeout(async () => {
       try {
         const results = await searchBySKUorName(search);
-        const processedResults = await processProductsWithSuppliers(results);
+        const processedResults = processProductsWithSuppliers(results);
         setFiltered(processedResults);
       } catch (err) {
         console.error(err);
