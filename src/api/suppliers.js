@@ -51,3 +51,21 @@ export async function deleteSupplier(supplierId) {
 
   return true;
 }
+
+export async function updateSupplier(supplierId, supplier) {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found. Please log in.");
+
+  const res = await fetch(${API_URL}/suppliers/${supplierId}, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: Bearer ${token},
+    },
+    body: JSON.stringify(supplier),
+  });
+
+  if (!res.ok) throw new Error("Updating supplier failed");
+
+  return res.json();
+}
