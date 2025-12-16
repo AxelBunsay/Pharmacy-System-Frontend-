@@ -16,6 +16,7 @@ export async function fetchReportsDaily(date, page = 1) {
 
   return res.json();
 }
+
 export async function fetchReportsWeekly(page = 1) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
@@ -53,7 +54,6 @@ export async function fetchReportsMonthly(month, year, page = 1) {
   return res.json();
 }
 
-
 export async function fetchReportsYearly(year, page = 1) {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found. Please log in.");
@@ -67,6 +67,26 @@ export async function fetchReportsYearly(year, page = 1) {
   });
 
   if (!res.ok) throw new Error("Failed to fetch yearly reports.");
+
+  return res.json();
+}
+
+export async function fetchReportsByRange(startDate, endDate, page = 1) {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found. Please log in.");
+
+  const res = await fetch(
+    `${API_URL}/sales/range/${startDate}/${endDate}?page=${page}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch reports by range.");
 
   return res.json();
 }
