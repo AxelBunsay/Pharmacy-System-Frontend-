@@ -53,3 +53,20 @@ export async function fetchReportsMonthly(month, year, page = 1) {
 
   return res.json();
 }
+
+export async function fetchReportsYearly(year, page = 1) {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found. Please log in.");
+
+  const res = await fetch(${API_URL}/sales/annual/${year}?page=${page}, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: Bearer ${token},
+    },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch yearly reports.");
+
+  return res.json();
+}
